@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>종말예언 : 어둠탐사기록</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #000;
+    height: 100%;
+  }
+
+  body {
+    font-family: 'IBM Plex Sans', 'Malgun Gothic', sans-serif;
+    color: #eee;
+  }
+
+  /* 실제로 스크롤할 공간을 만들어주는 컨테이너
+     장면 개수만큼 100vh씩 늘려주면 됨 (지금은 3장면 = 300vh) */
+  .scroll-space {
+    height: 300vh;
+    position: relative;
+  }
+
+  /* 화면에 고정되는 뷰포트 */
+  .sticky-viewport {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+
+  .phrase {
+    position: absolute;
+    text-align: center;
+    font-size: clamp(1.4rem, 4vw, 2.6rem);
+    line-height: 1.6;
+    padding: 0 1.5em;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    letter-spacing: 0.02em;
+  }
+
+  .phrase.visible {
+    opacity: 1;
+  }
+
+  /* ==============================
+     글리치 효과
+  ============================== */
+  .phrase.glitch {
+    animation: glitchJitter 0.15s infinite;
+  }
+
+  .phrase.glitch::before,
+  .phrase.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .phrase.glitch::before {
+    color: #ff2b4a;
+    clip-path: inset(0 0 60% 0);
+    transform: translate(-3px, -2px);
+    animation: glitchSliceA 0.4s infinite linear alternate-reverse;
+    mix-blend-mode: screen;
+  }
+
+  .phrase.glitch::after {
+    color: #2bd7ff;
+    clip-path: inset(40% 0 0 0);
+    transform: translate(3px, 2px);
+    animation: glitchSliceB 0.5s infinite linear alternate-reverse;
+    mix-blend-mode: screen;
+  }
+
+  @keyframes glitchJitter {
+    0%   { transform: translate(0, 0); }
+    20%  { transform: translate(-1px, 1px); }
+    40%  { transform: translate(1px, -1px); }
+    60%  { transform: translate(-1px, -1px); }
+    80%  { transform: translate(1px, 1px); }
+    100% { transform: translate(0, 0); }
+  }
+
+  @keyframes glitchSliceA {
+    0%   { clip-path: inset(10% 0 70% 0); }
+    30%  { clip-path: inset(50% 0 20% 0); }
+    60%  { clip-path: inset(5% 0 85% 0); }
+    100% { clip-path: inset(30% 0 40% 0); }
+  }
+
+  @keyframes glitchSliceB {
+    0%   { clip-path: inset(70% 0 5% 0); }
+    30%  { clip-path: inset(20% 0 55% 0); }
+    60%  { clip-path: inset(85% 0 2% 0); }
+    100% { clip-path: inset(45% 0 25% 0); }
+  }
+
+  /* 스크롤 유도 힌트 (선택사항) */
+  .scroll-hint {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #666;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+    z-index: 10;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-space">
+  <div class="sticky-viewport">
+    <!-- 장면 1: 첫 문구 -->
+    <div class="phrase" data-scene="0">
+      이 모든 건 우리의 졸업식날 일어났다.<br>
+      (예: 조용한 문장)
+    </div>
+
+    <!-- 장면 2: 글리치 문구 -->
+    <div class="phrase" data-scene="1" data-text="여기에 글리치 문구를 입력하세요.">
+      #ub1241uac00#4u0020WuC774¥4U0020#4u2e00wyc744₩y0020₩uc77d₩yb294₩ub2e4W#ub2941440020¥tuac74¥#U0020ud3b8#ubc95₩uс744₩u0020₩uс4fО₩uacе0₩u0020₩uє788₩ub2е4₩ub294₩uО020₩ub73b₩uc774₩ub2e4₩u002e₩u0020₩uac10₩ud788wu0020₩uc55etuc73c₩ub85c#u0020₩uc77cwuc5b4##ub0aow#u0o20wtuc77ew#uc744w#u0020wue5ffwubcf4wub824wuaceOwu0O20₩ud55c₩u0020₩ubЗ00₩uac00₩ub97с#u0020₩uєe58₩ub97с₩uО020₩uaс83₩uє774₩ub2e4₩ụ002е₩u0О20₩ubc18₩ub4dc₩uc2dc₩u002e
+#ub1241uac00#4u0020WuC774¥4U0020#4u2e00wyc744₩y0020₩uc77d₩yb294₩ub2e4W#ub2941440020¥tuac74¥#U0020ud3b8#ubc95₩uс744₩u0020₩uс4fО₩uacе0₩u0020₩uє788₩ub2е4₩ub294₩uО020₩ub73b₩uc774₩ub2e4₩u002e₩u0020₩uac10₩ud788wu0020₩uc55etuc73c₩ub85c#u0020₩uc77cwuc5b4##ub0aow#u0o20wtuc77ew#uc744w#u0020wue5ffwubcf4wub824wuaceOwu0O20₩ud55c₩u0020₩ubЗ00₩uac00₩ub97с#u0020₩uєe58₩ub97с₩uО020₩uaс83₩uє774₩ub2e4₩ụ002е₩u0О20₩ubc18₩ub4dc₩uc2dc₩u002e
+
+    </div>
+
+    <!-- 장면 3: 다시 원래 스타일, 새 문구 -->
+    <div class="phrase" data-scene="2">
+      파일을 열 수 없습니다.
+    </div>
+  </div>
+</div>
+
+<div class="scroll-hint">scroll ↓</div>
+
+<script>
+  const phrases = document.querySelectorAll('.phrase');
+  const scrollSpace = document.querySelector('.scroll-space');
+  const hint = document.querySelector('.scroll-hint');
+
+  // 장면 개수 (scroll-space 높이와 맞춰서 자동 계산됨)
+  const sceneCount = phrases.length;
+
+  function update() {
+    const scrollTop = window.scrollY;
+    const totalHeight = scrollSpace.offsetHeight - window.innerHeight;
+    const progress = Math.min(Math.max(scrollTop / totalHeight, 0), 1);
+
+    // 스크롤 진행도(0~1)를 장면 인덱스로 변환
+    const rawIndex = progress * sceneCount;
+    const currentScene = Math.min(Math.floor(rawIndex), sceneCount - 1);
+
+    phrases.forEach((el, i) => {
+      const scene = Number(el.dataset.scene);
+      el.classList.toggle('visible', scene === currentScene);
+
+      // 장면 1(인덱스 1)일 때만 글리치 클래스 적용
+      if (scene === 1) {
+        el.classList.toggle('glitch', currentScene === 1);
+      }
+    });
+
+    // 스크롤 시작하면 힌트 숨기기
+    hint.style.opacity = scrollTop < 20 ? '0.7' : '0';
+  }
+
+  window.addEventListener('scroll', update);
+  window.addEventListener('resize', update);
+  update(); // 초기 상태 (첫 문구 페이드인)
+</script>
+
+</body>
+</html>
